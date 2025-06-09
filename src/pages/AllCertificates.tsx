@@ -1,9 +1,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Award, Download } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { ArrowLeft, Award, Download, Search } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const AllCertificates = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+
   // Updated certificate data with all uploaded images
   const certificates = [
     {
@@ -145,8 +149,42 @@ const AllCertificates = () => {
       title: "Web3 Decision Science Contribution",
       date: "2025-06-09",
       image: "/lovable-uploads/f8887d4e-1b6d-4346-9bd2-3ad9d71129af.png"
+    },
+    {
+      id: 21,
+      name: "Zeliha ATAŞ",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/998b3ab8-9622-48bc-b3be-893f34697cd2.png"
+    },
+    {
+      id: 22,
+      name: "Sibel YAŞAR",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/6081837c-9d65-420b-b857-4ec6c98c68d5.png"
+    },
+    {
+      id: 23,
+      name: "Tülay AYGÜN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/3d8101c9-cb1d-43d1-ad4c-7965791a661c.png"
+    },
+    {
+      id: 24,
+      name: "Yusuf ÖZGÜL",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/e9038980-ab10-4735-95cc-792f48aad9a0.png"
     }
   ];
+
+  // Filter certificates based on search term
+  const filteredCertificates = certificates.filter(certificate =>
+    certificate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    certificate.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleDownload = async (imageUrl: string, fileName: string) => {
     try {
@@ -227,10 +265,31 @@ const AllCertificates = () => {
               </p>
             </div>
           </div>
+
+          {/* Search Bar */}
+          <div className="mb-8 max-w-md mx-auto">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 w-4 h-4" />
+              <Input
+                type="text"
+                placeholder="Search certificates by name or title..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60 focus:border-purple-400/50"
+              />
+            </div>
+          </div>
           
+          {/* Results count */}
+          <div className="text-center mb-6">
+            <p className="text-white/70">
+              {searchTerm ? `Found ${filteredCertificates.length} certificate(s)` : `Total: ${certificates.length} certificates`}
+            </p>
+          </div>
+
           {/* Certificates Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certificates.map((certificate) => (
+            {filteredCertificates.map((certificate) => (
               <Card 
                 key={certificate.id}
                 className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50"
@@ -272,6 +331,20 @@ const AllCertificates = () => {
               </Card>
             ))}
           </div>
+
+          {/* No results message */}
+          {filteredCertificates.length === 0 && searchTerm && (
+            <div className="text-center mt-12">
+              <div className="bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg p-8 max-w-md mx-auto">
+                <p className="text-white/80 text-lg">
+                  No certificates found for "{searchTerm}"
+                </p>
+                <p className="text-white/60 text-sm mt-2">
+                  Try searching with a different name or title
+                </p>
+              </div>
+            </div>
+          )}
           
           {/* Footer message */}
           <div className="text-center mt-16">
