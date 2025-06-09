@@ -1,55 +1,100 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Award } from "lucide-react";
+import { ArrowLeft, Award, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AllCertificates = () => {
-  // Sample certificate data - in a real app this would come from an API
+  // Updated certificate data with the new uploaded images
   const certificates = [
     {
       id: 1,
-      name: "Dr. Sarah Johnson",
-      title: "Blockchain Research Contribution",
-      date: "2024-01-15",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "İsmail KÖŞKER",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/173b20c6-ac6d-488f-9bda-26347633e9e7.png"
     },
     {
       id: 2,
-      name: "Prof. Michael Chen",
-      title: "Web3 Innovation Excellence",
-      date: "2024-02-20",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "Ali KILICI",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/f8a084eb-2765-4a8e-80dc-c4aad8d18483.png"
     },
     {
       id: 3,
-      name: "Dr. Emily Rodriguez",
-      title: "Decision Science Pioneer",
-      date: "2024-03-10",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "Asena SEVİNÇ",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/fa06d301-27cb-4b72-88eb-f2570c9e2183.png"
     },
     {
       id: 4,
-      name: "Dr. James Wilson",
-      title: "Early Adopter Recognition",
-      date: "2024-04-05",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "Bülent ÖZTÜRK",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/ac340c09-6e61-4ba9-bdf7-992a5fe77f58.png"
     },
     {
       id: 5,
-      name: "Prof. Lisa Zhang",
-      title: "Research Collaboration Award",
-      date: "2024-05-12",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "Burçin ÖZCAN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/f798a37f-64ac-43f6-9b40-6fddb5de95c8.png"
     },
     {
       id: 6,
-      name: "Dr. Robert Taylor",
-      title: "Technology Advancement",
-      date: "2024-06-08",
-      image: "/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg"
+      name: "Ebru CAN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/c925a6e9-5189-4cf3-8592-d2f9caa3c618.png"
+    },
+    {
+      id: 7,
+      name: "Gökhan BÜTEV",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/1c446756-be7e-472a-9650-cc0278bfd07d.png"
+    },
+    {
+      id: 8,
+      name: "Hanifi ÇETİN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/7cb68746-6fe1-45eb-b8bc-906bca97647d.png"
+    },
+    {
+      id: 9,
+      name: "Hediye Belgin YENİAY",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/eae2f641-bf6d-47c7-a2f8-b6b402e26463.png"
+    },
+    {
+      id: 10,
+      name: "İnan KAZAN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/c33f1be8-ce65-4af9-b71e-bd3fdbc15bfd.png"
     }
   ];
+
+  const handleDownload = async (imageUrl: string, fileName: string) => {
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${fileName}_certificate.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Download failed:', error);
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -130,7 +175,7 @@ const AllCertificates = () => {
                     />
                   </div>
                   
-                  <div className="text-center space-y-2">
+                  <div className="text-center space-y-3">
                     <h3 className="text-xl font-bold text-white">
                       {certificate.name}
                     </h3>
@@ -144,6 +189,15 @@ const AllCertificates = () => {
                         day: 'numeric'
                       })}
                     </p>
+                    
+                    {/* Download Button */}
+                    <Button
+                      onClick={() => handleDownload(certificate.image, certificate.name)}
+                      className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download Certificate
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -158,7 +212,7 @@ const AllCertificates = () => {
                 those who believed in the vision from the very beginning."
               </p>
               <p className="text-purple-300 font-semibold mt-4">
-                — Prof. Dr. Selçuk Topal
+                — Prof. Dr. Selçuk TOPAL
               </p>
             </div>
           </div>
