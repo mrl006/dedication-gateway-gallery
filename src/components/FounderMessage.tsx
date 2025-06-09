@@ -1,6 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
-import { Quote } from "lucide-react";
+import { Quote, Linkedin } from "lucide-react";
+import { X } from "lucide-react";
 
 export const FounderMessage = () => {
   return (
@@ -17,9 +18,31 @@ export const FounderMessage = () => {
               "To those who believed in the vision early — thank you for being the light that guided this journey."
             </blockquote>
             
-            <div className="text-right">
+            <div className="text-right mb-6">
               <p className="text-lg font-semibold text-white">— Prof. Dr. Selçuk Topal</p>
               <p className="text-sm text-white/70 mt-1">Founder, Web3 Decision Science</p>
+            </div>
+            
+            <div className="flex justify-center gap-4">
+              <a 
+                href="https://www.linkedin.com/in/selcuktopal80/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors text-white hover:text-purple-300"
+              >
+                <Linkedin className="w-5 h-5" />
+                <span>LinkedIn</span>
+              </a>
+              
+              <a 
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors text-white hover:text-purple-300"
+              >
+                <X className="w-5 h-5" />
+                <span>X</span>
+              </a>
             </div>
           </CardContent>
         </Card>

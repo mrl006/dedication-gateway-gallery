@@ -10,7 +10,7 @@ export const Footer = () => {
           <div className="flex justify-center items-center gap-3 mb-4">
             <div className="w-8 h-8 rounded-full overflow-hidden border border-white/20">
               <img 
-                src="/lovable-uploads/74e38e0a-5bb2-436c-880e-6be81256c155.png" 
+                src="/lovable-uploads/e9b6b1b5-6cd0-4412-9fce-fcd77e16e662.png" 
                 alt="Web3 Decision Science Logo"
                 className="w-full h-full object-cover"
               />

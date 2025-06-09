@@ -13,7 +13,7 @@ export const Hero = () => {
             {/* Logo container */}
             <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm">
               <img 
-                src="/lovable-uploads/74e38e0a-5bb2-436c-880e-6be81256c155.png" 
+                src="/lovable-uploads/e9b6b1b5-6cd0-4412-9fce-fcd77e16e662.png" 
                 alt="Web3 Decision Science Logo"
                 className="w-full h-full object-cover"
               />
