@@ -1,11 +1,10 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Award, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const AllCertificates = () => {
-  // Updated certificate data with the new uploaded images
+  // Updated certificate data with all uploaded images
   const certificates = [
     {
       id: 1,
@@ -76,6 +75,76 @@ const AllCertificates = () => {
       title: "Web3 Decision Science Contribution",
       date: "2025-06-09",
       image: "/lovable-uploads/c33f1be8-ce65-4af9-b71e-bd3fdbc15bfd.png"
+    },
+    {
+      id: 11,
+      name: "Sibel YAŞAR",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/3450665f-8873-48e6-a2fa-7b76b88f60b5.png"
+    },
+    {
+      id: 12,
+      name: "Leyla GÖÇMEZ",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/5c98239a-90e1-49ec-9770-7bda7156b1ac.png"
+    },
+    {
+      id: 13,
+      name: "Muhammet Ahmet ÇETİN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/a1418e69-07a3-4b67-a4ec-e97e32068234.png"
+    },
+    {
+      id: 14,
+      name: "Murali M",
+      title: "Thank You for Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/8f8d6a72-2f0c-437b-92dc-d9bf289dc2a5.png"
+    },
+    {
+      id: 15,
+      name: "NEBAHAT ALTUNYURT KAYA",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/5b4abfbc-2842-46ab-a8ea-b16e7e269032.png"
+    },
+    {
+      id: 16,
+      name: "Nure Al Sifat",
+      title: "Thank You for Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/fb8efb73-96c8-4889-b59a-fa5fad13ddcd.png"
+    },
+    {
+      id: 17,
+      name: "Ogunlami Taiwo",
+      title: "Thank You for Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/8298975c-4bc2-4c83-895c-12a1ce510cd1.png"
+    },
+    {
+      id: 18,
+      name: "Osman ULUSOY",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/f704ba10-deab-42b8-ad2a-60061e5a5920.png"
+    },
+    {
+      id: 19,
+      name: "Ozan KARASU",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/98c80b1a-c57f-4ab7-bcad-7957c24e6012.png"
+    },
+    {
+      id: 20,
+      name: "Poyraz ARSLAN",
+      title: "Web3 Decision Science Contribution",
+      date: "2025-06-09",
+      image: "/lovable-uploads/f8887d4e-1b6d-4346-9bd2-3ad9d71129af.png"
     }
   ];
 
