@@ -21,9 +21,7 @@ export const CertificatesGallery = () => {
               <AspectRatio ratio={4 / 3} className="mb-4">
                 <img alt="Certificate Gallery Preview" className="rounded-lg object-cover w-full h-full shadow-md" src="/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg" />
               </AspectRatio>
-              <h3 className="text-xl font-semibold text-center mb-2 text-white">
-                Certificate Gallery
-              </h3>
+              <h3 className="text-xl font-semibold text-center mb-2 text-white">Contribution Certificate</h3>
               <p className="text-sm text-white/70 text-center">
                 View all certificates of our early contributors
               </p>

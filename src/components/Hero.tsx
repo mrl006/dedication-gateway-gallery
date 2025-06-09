@@ -26,9 +26,7 @@ export const Hero = () => {
         
         <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 drop-shadow-lg">Thank You for Your Contribution</h1>
         
-        <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-          Celebrating the Early Contributors of Web3 Decision Science
-        </p>
+        <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md md:text-lg">Proudly honoring our early supporters who shaped the future of     Web3 Decision </p>
         
         <div className="mt-12 flex justify-center">
           <div className="w-1 h-16 bg-gradient-to-b from-purple-400 via-pink-400 to-transparent rounded-full shadow-lg"></div>
