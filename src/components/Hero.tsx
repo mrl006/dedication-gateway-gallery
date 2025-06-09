@@ -1,36 +1,72 @@
+
 import { Badge } from "@/components/ui/badge";
+
 export const Hero = () => {
-  return <section className="relative py-20 px-4 text-center">
+  return (
+    <section className="relative py-20 px-4 text-center">
       <div className="max-w-4xl mx-auto">
         {/* Logo with Web3 effects */}
         <div className="mb-8 flex justify-center">
           <div className="relative">
-            {/* Glow effect behind logo */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-xl opacity-50 scale-150"></div>
-            {/* Logo container */}
-            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm">
-              <img src="/lovable-uploads/e9b6b1b5-6cd0-4412-9fce-fcd77e16e662.png" alt="Web3 Decision Science Logo" className="w-full h-full object-cover" />
-              {/* Overlay gradient to match theme */}
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay"></div>
+            {/* Enhanced glow effect behind logo */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 rounded-full blur-2xl opacity-70 scale-150 animate-pulse"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-600 rounded-full blur-xl opacity-40 scale-125 animate-pulse delay-1000"></div>
+            
+            {/* Logo container with glass effect */}
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-2 border-white/30 backdrop-blur-md bg-white/10 shadow-2xl">
+              <img 
+                src="/lovable-uploads/e9b6b1b5-6cd0-4412-9fce-fcd77e16e662.png" 
+                alt="Web3 Decision Science Logo" 
+                className="w-full h-full object-cover" 
+              />
+              {/* Enhanced overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 via-blue-500/20 to-pink-500/30 mix-blend-overlay"></div>
             </div>
-            {/* Rotating ring around logo */}
-            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-purple-400/50 rounded-full animate-spin" style={{
-            animationDuration: '10s'
-          }}></div>
+            
+            {/* Multiple rotating rings */}
+            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-purple-400/60 rounded-full animate-spin" style={{ animationDuration: '10s' }}></div>
+            <div className="absolute inset-0 w-36 h-36 -translate-x-2 -translate-y-2 border border-dotted border-cyan-400/40 rounded-full animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
           </div>
         </div>
         
-        <Badge variant="secondary" className="mb-6 text-sm px-4 py-2 bg-white/10 backdrop-blur-sm border-purple-400/30 text-white">
-          Web3 Decision Science
+        {/* Enhanced badge with glass effect */}
+        <Badge variant="secondary" className="mb-6 text-sm px-6 py-3 bg-white/10 backdrop-blur-md border border-purple-400/40 text-white shadow-lg hover:bg-white/20 transition-all duration-300">
+          <span className="bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text text-transparent font-semibold">
+            Web3 Decision Science
+          </span>
         </Badge>
         
-        <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 drop-shadow-lg">Thank You for Your Contribution</h1>
+        {/* Enhanced gradient title */}
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 drop-shadow-2xl">
+          <span className="bg-gradient-to-r from-white via-purple-200 via-cyan-200 to-pink-200 bg-clip-text text-transparent leading-tight">
+            Thank You for Your
+          </span>
+          <br />
+          <span className="bg-gradient-to-r from-purple-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent animate-pulse">
+            Contribution
+          </span>
+        </h1>
         
-        <p className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md md:text-lg">Proudly honoring our early supporters who shaped the future of     Web3 Decision </p>
+        {/* Enhanced description with glass background */}
+        <div className="mb-12 max-w-3xl mx-auto">
+          <div className="bg-white/5 backdrop-blur-md border border-white/20 rounded-2xl p-6 shadow-xl">
+            <p className="text-xl text-white/90 leading-relaxed">
+              Proudly honoring our early supporters who shaped the future of{' '}
+              <span className="bg-gradient-to-r from-purple-300 to-cyan-300 bg-clip-text text-transparent font-semibold">
+                Web3 Decision Science
+              </span>
+            </p>
+          </div>
+        </div>
         
-        <div className="mt-12 flex justify-center">
-          <div className="w-1 h-16 bg-gradient-to-b from-purple-400 via-pink-400 to-transparent rounded-full shadow-lg"></div>
+        {/* Enhanced scroll indicator */}
+        <div className="flex justify-center">
+          <div className="relative">
+            <div className="w-1 h-16 bg-gradient-to-b from-purple-400 via-cyan-400 to-transparent rounded-full shadow-lg animate-pulse"></div>
+            <div className="absolute inset-0 w-1 h-16 bg-gradient-to-b from-purple-300 via-blue-300 to-transparent rounded-full blur-sm"></div>
+          </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
