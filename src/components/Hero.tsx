@@ -26,15 +26,15 @@ export const Hero = () => {
         </div>
         
         <Badge variant="secondary" className="mb-6 text-sm px-4 py-2 bg-white/10 backdrop-blur-sm border-purple-400/30 text-white">
-          Web3 Decision Science Foundation
+          Web3 Decision Science
         </Badge>
         
         <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6 drop-shadow-lg">
-          Honoring Our Founding Visionaries
+          Thank You for Your Dedication
         </h1>
         
         <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-          Recognizing the exceptional individuals who believed in our mission to revolutionize decision-making through blockchain technology and laid the foundation for our groundbreaking research
+          Celebrating the Early Contributors of Web3 Decision Science
         </p>
         
         <div className="mt-12 flex justify-center">
