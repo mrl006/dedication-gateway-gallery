@@ -1,12 +1,9 @@
-
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { ExternalLink, Award } from "lucide-react";
-
 export const CertificatesGallery = () => {
-  return (
-    <section className="py-20 px-4">
+  return <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex justify-center items-center gap-3 mb-4">
@@ -21,12 +18,8 @@ export const CertificatesGallery = () => {
         <div className="flex justify-center">
           <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50 max-w-md w-full">
             <CardContent className="p-6">
-              <AspectRatio ratio={4/3} className="mb-4">
-                <img 
-                  src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop" 
-                  alt="Certificate Gallery Preview"
-                  className="rounded-lg object-cover w-full h-full shadow-md"
-                />
+              <AspectRatio ratio={4 / 3} className="mb-4">
+                <img alt="Certificate Gallery Preview" className="rounded-lg object-cover w-full h-full shadow-md" src="/lovable-uploads/8358ae13-8137-49a0-ade5-28ec2649e33f.jpg" />
               </AspectRatio>
               <h3 className="text-xl font-semibold text-center mb-2 text-white">
                 Certificate Gallery
@@ -36,10 +29,7 @@ export const CertificatesGallery = () => {
               </p>
             </CardContent>
             <CardFooter className="pt-0 pb-6">
-              <Button 
-                className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0"
-                onClick={() => window.open('#', '_blank')}
-              >
+              <Button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0" onClick={() => window.open('#', '_blank')}>
                 <ExternalLink className="w-4 h-4 mr-2" />
                 View All Certificates
               </Button>
@@ -47,6 +37,5 @@ export const CertificatesGallery = () => {
           </Card>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
