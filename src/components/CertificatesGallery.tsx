@@ -50,17 +50,17 @@ export const CertificatesGallery = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <div className="flex justify-center items-center gap-3 mb-4">
-            <Award className="w-8 h-8 text-purple-600" />
-            <h2 className="text-4xl md:text-5xl font-bold">Certificates of Appreciation</h2>
+            <Award className="w-8 h-8 text-purple-300" />
+            <h2 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">Certificates of Appreciation</h2>
           </div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-white/80 max-w-2xl mx-auto">
             Honoring those who believed in our vision from the beginning
           </p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certificates.map((certificate) => (
-            <Card key={certificate.id} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-card/50 backdrop-blur-sm border-2 hover:border-purple-200">
+            <Card key={certificate.id} className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50">
               <CardContent className="p-6">
                 <AspectRatio ratio={4/3} className="mb-4">
                   <img 
@@ -69,16 +69,16 @@ export const CertificatesGallery = () => {
                     className="rounded-lg object-cover w-full h-full shadow-md"
                   />
                 </AspectRatio>
-                <h3 className="text-xl font-semibold text-center mb-2">
+                <h3 className="text-xl font-semibold text-center mb-2 text-white">
                   {certificate.name}
                 </h3>
-                <p className="text-sm text-muted-foreground text-center">
+                <p className="text-sm text-white/70 text-center">
                   Early Contributor
                 </p>
               </CardContent>
               <CardFooter className="pt-0 pb-6">
                 <Button 
-                  className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0"
                   onClick={() => window.open(certificate.ipfsUrl, '_blank')}
                 >
                   <ExternalLink className="w-4 h-4 mr-2" />
