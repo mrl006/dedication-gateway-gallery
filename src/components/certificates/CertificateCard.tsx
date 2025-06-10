@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Award } from "lucide-react";
@@ -35,12 +34,6 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
     return false;
   }, []);
 
-  // Prevent selection
-  const handleSelectStart = useCallback((e: React.SyntheticEvent) => {
-    e.preventDefault();
-    return false;
-  }, []);
-
   const handleImageLoad = useCallback(() => {
     setImageLoaded(true);
   }, []);
@@ -63,7 +56,6 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
             className="relative w-full h-full select-none"
             onContextMenu={handleContextMenu}
             onDragStart={handleDragStart}
-            onSelectStart={handleSelectStart}
             style={{ 
               userSelect: 'none',
               WebkitUserSelect: 'none',
@@ -85,7 +77,6 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
                 draggable={false}
                 onDragStart={handleDragStart}
                 onContextMenu={handleContextMenu}
-                onSelectStart={handleSelectStart}
                 onLoad={handleImageLoad}
                 onError={handleImageError}
                 style={{
@@ -110,7 +101,6 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
               className="absolute inset-0 bg-transparent pointer-events-auto"
               onContextMenu={handleContextMenu}
               onDragStart={handleDragStart}
-              onSelectStart={handleSelectStart}
             />
             
             {/* Subtle watermark */}
