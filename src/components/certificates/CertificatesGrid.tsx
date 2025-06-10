@@ -7,14 +7,39 @@ interface CertificatesGridProps {
   searchTerm: string;
 }
 
+// Helper function to normalize Turkish characters for better search
+const normalizeText = (text: string): string => {
+  return text
+    .toLowerCase()
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ı/g, 'i')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c')
+    .replace(/Ğ/g, 'g')
+    .replace(/Ü/g, 'u')
+    .replace(/Ş/g, 's')
+    .replace(/İ/g, 'i')
+    .replace(/Ö/g, 'o')
+    .replace(/Ç/g, 'c');
+};
+
 const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
   const [visibleCount, setVisibleCount] = useState(9); // Load 9 certificates initially
   
   const filteredCertificates = useMemo(() => {
-    return certificates.filter(certificate =>
-      certificate.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      certificate.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    if (!searchTerm.trim()) return certificates;
+    
+    const normalizedSearchTerm = normalizeText(searchTerm);
+    
+    return certificates.filter(certificate => {
+      const normalizedName = normalizeText(certificate.name);
+      const normalizedTitle = normalizeText(certificate.title);
+      
+      return normalizedName.includes(normalizedSearchTerm) ||
+             normalizedTitle.includes(normalizedSearchTerm);
+    });
   }, [searchTerm]);
 
   const visibleCertificates = useMemo(() => {
