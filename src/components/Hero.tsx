@@ -1,6 +1,4 @@
-
 import { Badge } from "@/components/ui/badge";
-
 export const Hero = () => {
   return <section className="relative py-20 px-4 text-center">
       <div className="max-w-4xl mx-auto">
@@ -10,13 +8,13 @@ export const Hero = () => {
             {/* Glow effect behind logo */}
             <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full blur-xl opacity-50 scale-150"></div>
             {/* Logo container */}
-            <div className="relative z-10 w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm">
+            <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm">
               <img src="/lovable-uploads/e9b6b1b5-6cd0-4412-9fce-fcd77e16e662.png" alt="Web3 Decision Science Logo" className="w-full h-full object-cover" />
               {/* Overlay gradient to match theme */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay"></div>
             </div>
-            {/* Rotating ring around logo - darker and more glassy */}
-            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-black/60 rounded-full animate-spin backdrop-blur-md bg-black/20 z-0" style={{
+            {/* Rotating ring around logo */}
+            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-purple-400/50 rounded-full animate-spin" style={{
             animationDuration: '10s'
           }}></div>
           </div>
