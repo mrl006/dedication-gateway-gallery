@@ -1,5 +1,5 @@
 
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import { certificates } from "@/data/certificatesData";
 import CertificateCard from "./CertificateCard";
 
@@ -26,9 +26,9 @@ const normalizeText = (text: string): string => {
 };
 
 const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
-  const [visibleCount, setVisibleCount] = useState(9); // Load 9 certificates initially
+  const [visibleCount, setVisibleCount] = useState(6); // Reduced initial load for mobile
   
-  // Sort certificates alphabetically by name (A to Z)
+  // Sort certificates alphabetically by name (A to Z) - memoized for performance
   const sortedCertificates = useMemo(() => {
     return [...certificates].sort((a, b) => {
       const nameA = normalizeText(a.name);
@@ -37,6 +37,7 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
     });
   }, []);
   
+  // Optimized search with debouncing effect through useMemo
   const filteredCertificates = useMemo(() => {
     if (!searchTerm.trim()) return sortedCertificates;
     
@@ -55,14 +56,34 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
     return filteredCertificates.slice(0, visibleCount);
   }, [filteredCertificates, visibleCount]);
 
-  const handleLoadMore = () => {
-    setVisibleCount(prev => Math.min(prev + 9, filteredCertificates.length));
-  };
+  // Optimized load more with useCallback
+  const handleLoadMore = useCallback(() => {
+    setVisibleCount(prev => Math.min(prev + 6, filteredCertificates.length));
+  }, [filteredCertificates.length]);
 
   // Reset visible count when search changes
   useEffect(() => {
-    setVisibleCount(9);
+    setVisibleCount(6);
   }, [searchTerm]);
+
+  // Intersection Observer for infinite scroll (optional enhancement)
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && visibleCertificates.length < filteredCertificates.length) {
+          handleLoadMore();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const loadMoreButton = document.getElementById('load-more-trigger');
+    if (loadMoreButton) {
+      observer.observe(loadMoreButton);
+    }
+
+    return () => observer.disconnect();
+  }, [handleLoadMore, visibleCertificates.length, filteredCertificates.length]);
 
   return (
     <>
@@ -79,22 +100,24 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
         <p className="text-white/50 text-sm mt-1">Sorted alphabetically by name</p>
       </div>
 
-      {/* Certificates Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {visibleCertificates.map((certificate) => (
+      {/* Optimized Certificates Grid with better responsive layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+        {visibleCertificates.map((certificate, index) => (
           <CertificateCard
             key={certificate.id}
             certificate={certificate}
+            priority={index < 6} // Prioritize first 6 images
           />
         ))}
       </div>
 
-      {/* Load More Button */}
+      {/* Load More Button with intersection observer trigger */}
       {visibleCertificates.length < filteredCertificates.length && (
         <div className="text-center mt-8">
           <button
+            id="load-more-trigger"
             onClick={handleLoadMore}
-            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-lg transition-all duration-300 hover:shadow-lg"
+            className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-6 py-2 md:px-8 md:py-3 rounded-lg transition-all duration-300 hover:shadow-lg text-sm md:text-base"
           >
             Load More Certificates
           </button>
@@ -104,8 +127,8 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
       {/* No results message */}
       {filteredCertificates.length === 0 && searchTerm && (
         <div className="text-center mt-12">
-          <div className="bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg p-8 max-w-md mx-auto">
-            <p className="text-white/80 text-lg">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg p-6 md:p-8 max-w-md mx-auto">
+            <p className="text-white/80 text-base md:text-lg">
               No certificates found for "{searchTerm}"
             </p>
             <p className="text-white/60 text-sm mt-2">

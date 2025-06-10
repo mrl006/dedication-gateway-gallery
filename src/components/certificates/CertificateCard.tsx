@@ -1,88 +1,109 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download, Award } from "lucide-react";
 import { Certificate } from "@/types/certificate";
+import { memo, useState, useCallback } from "react";
 
 interface CertificateCardProps {
   certificate: Certificate;
+  priority?: boolean;
 }
 
-const CertificateCard = ({ certificate }: CertificateCardProps) => {
-  const handleDownload = () => {
+const CertificateCard = memo(({ certificate, priority = false }: CertificateCardProps) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  const handleDownload = useCallback(() => {
     window.open(certificate.ipfsUrl, '_blank');
-  };
+  }, [certificate.ipfsUrl]);
 
   // Prevent context menu (right-click)
-  const handleContextMenu = (e: React.MouseEvent) => {
+  const handleContextMenu = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
-  };
+  }, []);
 
   // Prevent drag and drop
-  const handleDragStart = (e: React.DragEvent) => {
+  const handleDragStart = useCallback((e: React.DragEvent) => {
     e.preventDefault();
-  };
+  }, []);
+
+  const handleImageLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
+
+  const handleImageError = useCallback(() => {
+    setImageError(true);
+  }, []);
 
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50">
-      <CardContent className="p-6">
-        <div className="aspect-[4/3] mb-4 rounded-lg overflow-hidden bg-gray-200/20 relative">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50 will-change-transform">
+      <CardContent className="p-3 md:p-6">
+        <div className="aspect-[4/3] mb-3 md:mb-4 rounded-lg overflow-hidden bg-gray-200/20 relative">
+          {/* Loading skeleton */}
+          {!imageLoaded && !imageError && (
+            <div className="absolute inset-0 bg-gradient-to-r from-gray-200/20 via-gray-300/20 to-gray-200/20 animate-pulse" />
+          )}
+          
           {/* Protected image with overlay */}
           <div 
             className="relative w-full h-full select-none"
             onContextMenu={handleContextMenu}
             style={{ userSelect: 'none' }}
           >
-            <img 
-              src={certificate.image} 
-              alt={`Certificate for ${certificate.name}`}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 pointer-events-none select-none"
-              loading="lazy"
-              draggable={false}
-              onDragStart={handleDragStart}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-                userSelect: 'none',
-                WebkitUserSelect: 'none',
-                MozUserSelect: 'none',
-                msUserSelect: 'none'
-              }}
-              onLoad={(e) => {
-                const img = e.target as HTMLImageElement;
-                // Compress image quality for thumbnails
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-                if (ctx && img.naturalWidth > 400) {
-                  canvas.width = 400;
-                  canvas.height = (img.naturalHeight * 400) / img.naturalWidth;
-                  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                  img.src = canvas.toDataURL('image/jpeg', 0.7);
-                }
-              }}
-            />
+            {!imageError ? (
+              <img 
+                src={certificate.image} 
+                alt={`Certificate for ${certificate.name}`}
+                className={`w-full h-full object-cover transition-all duration-300 pointer-events-none select-none ${
+                  imageLoaded 
+                    ? 'opacity-100 group-hover:scale-105' 
+                    : 'opacity-0'
+                }`}
+                loading={priority ? "eager" : "lazy"}
+                draggable={false}
+                onDragStart={handleDragStart}
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                  userSelect: 'none',
+                  WebkitUserSelect: 'none',
+                  MozUserSelect: 'none',
+                  msUserSelect: 'none'
+                }}
+                // Add responsive image sizes for better performance
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              />
+            ) : (
+              <div className="w-full h-full bg-gray-300/20 flex items-center justify-center">
+                <Award className="w-8 h-8 text-white/40" />
+              </div>
+            )}
             
             {/* Protection overlay */}
             <div 
               className="absolute inset-0 bg-transparent pointer-events-auto"
               onContextMenu={handleContextMenu}
               onDragStart={handleDragStart}
-            ></div>
+            />
             
             {/* Certificate icon overlay */}
-            <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
-              <Award className="w-3 h-3 text-white/80" />
+            <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
+              <Award className="w-2 h-2 md:w-3 md:h-3 text-white/80" />
             </div>
           </div>
         </div>
         
-        <div className="text-center space-y-3">
-          <h3 className="text-xl font-bold text-white">
+        <div className="text-center space-y-2 md:space-y-3">
+          <h3 className="text-lg md:text-xl font-bold text-white line-clamp-2">
             {certificate.name}
           </h3>
-          <p className="text-purple-300 font-medium">
+          <p className="text-purple-300 font-medium text-sm md:text-base line-clamp-1">
             {certificate.title}
           </p>
-          <p className="text-sm text-white/70">
+          <p className="text-xs md:text-sm text-white/70">
             Issued: {new Date(certificate.date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -92,15 +113,17 @@ const CertificateCard = ({ certificate }: CertificateCardProps) => {
           
           <Button
             onClick={handleDownload}
-            className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 transition-all duration-300"
+            className="w-full mt-3 md:mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 transition-all duration-300 text-xs md:text-sm py-2 md:py-3"
           >
-            <Download className="w-4 h-4 mr-2" />
+            <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
             Download Certificate
           </Button>
         </div>
       </CardContent>
     </Card>
   );
-};
+});
+
+CertificateCard.displayName = 'CertificateCard';
 
 export default CertificateCard;
