@@ -1,4 +1,6 @@
+
 import { Badge } from "@/components/ui/badge";
+
 export const Hero = () => {
   return <section className="relative py-20 px-4 text-center">
       <div className="max-w-4xl mx-auto">
@@ -13,8 +15,8 @@ export const Hero = () => {
               {/* Overlay gradient to match theme */}
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay"></div>
             </div>
-            {/* Rotating ring around logo */}
-            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-purple-400/50 rounded-full animate-spin" style={{
+            {/* Rotating ring around logo - darker and more glassy */}
+            <div className="absolute inset-0 w-32 h-32 border-2 border-dashed border-black/60 rounded-full animate-spin backdrop-blur-md bg-black/20" style={{
             animationDuration: '10s'
           }}></div>
           </div>
