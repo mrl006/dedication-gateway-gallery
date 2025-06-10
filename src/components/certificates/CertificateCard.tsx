@@ -6,10 +6,13 @@ import { Certificate } from "@/data/certificatesData";
 
 interface CertificateCardProps {
   certificate: Certificate;
-  onDownload: (imageUrl: string, fileName: string) => void;
 }
 
-const CertificateCard = ({ certificate, onDownload }: CertificateCardProps) => {
+const CertificateCard = ({ certificate }: CertificateCardProps) => {
+  const handleDownload = () => {
+    window.open(certificate.ipfsUrl, '_blank');
+  };
+
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50">
       <CardContent className="p-6">
@@ -37,8 +40,8 @@ const CertificateCard = ({ certificate, onDownload }: CertificateCardProps) => {
           </p>
           
           <Button
-            onClick={() => onDownload(certificate.image, certificate.name)}
-            className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0"
+            onClick={handleDownload}
+            className="w-full mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 transition-all duration-300"
           >
             <Download className="w-4 h-4 mr-2" />
             Download Certificate

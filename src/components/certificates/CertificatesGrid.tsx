@@ -1,6 +1,6 @@
 
 import { useMemo } from "react";
-import { certificates, Certificate } from "@/data/certificatesData";
+import { certificates } from "@/data/certificatesData";
 import CertificateCard from "./CertificateCard";
 
 interface CertificatesGridProps {
@@ -14,23 +14,6 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
       certificate.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }, [searchTerm]);
-
-  const handleDownload = async (imageUrl: string, fileName: string) => {
-    try {
-      const response = await fetch(imageUrl);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `${fileName}_certificate.png`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(url);
-    } catch (error) {
-      console.error('Download failed:', error);
-    }
-  };
 
   return (
     <>
@@ -47,7 +30,6 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
           <CertificateCard
             key={certificate.id}
             certificate={certificate}
-            onDownload={handleDownload}
           />
         ))}
       </div>
