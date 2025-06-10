@@ -1,7 +1,6 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Download, Lock } from "lucide-react";
+import { Download, Award } from "lucide-react";
 import { Certificate } from "@/types/certificate";
 
 interface CertificateCardProps {
@@ -23,11 +22,6 @@ const CertificateCard = ({ certificate }: CertificateCardProps) => {
     e.preventDefault();
   };
 
-  // Prevent text selection
-  const handleSelectStart = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-  };
-
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white/10 backdrop-blur-md border-2 border-white/20 hover:border-purple-400/50">
       <CardContent className="p-6">
@@ -36,7 +30,7 @@ const CertificateCard = ({ certificate }: CertificateCardProps) => {
           <div 
             className="relative w-full h-full select-none"
             onContextMenu={handleContextMenu}
-            onSelectStart={handleSelectStart}
+            style={{ userSelect: 'none' }}
           >
             <img 
               src={certificate.image} 
@@ -71,13 +65,12 @@ const CertificateCard = ({ certificate }: CertificateCardProps) => {
             <div 
               className="absolute inset-0 bg-transparent pointer-events-auto"
               onContextMenu={handleContextMenu}
-              onSelectStart={handleSelectStart}
               onDragStart={handleDragStart}
             ></div>
             
-            {/* Lock icon overlay */}
+            {/* Certificate icon overlay */}
             <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
-              <Lock className="w-3 h-3 text-white/80" />
+              <Award className="w-3 h-3 text-white/80" />
             </div>
           </div>
         </div>
