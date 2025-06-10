@@ -28,19 +28,28 @@ const normalizeText = (text: string): string => {
 const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
   const [visibleCount, setVisibleCount] = useState(9); // Load 9 certificates initially
   
+  // Sort certificates alphabetically by name (A to Z)
+  const sortedCertificates = useMemo(() => {
+    return [...certificates].sort((a, b) => {
+      const nameA = normalizeText(a.name);
+      const nameB = normalizeText(b.name);
+      return nameA.localeCompare(nameB);
+    });
+  }, []);
+  
   const filteredCertificates = useMemo(() => {
-    if (!searchTerm.trim()) return certificates;
+    if (!searchTerm.trim()) return sortedCertificates;
     
     const normalizedSearchTerm = normalizeText(searchTerm);
     
-    return certificates.filter(certificate => {
+    return sortedCertificates.filter(certificate => {
       const normalizedName = normalizeText(certificate.name);
       const normalizedTitle = normalizeText(certificate.title);
       
       return normalizedName.includes(normalizedSearchTerm) ||
              normalizedTitle.includes(normalizedSearchTerm);
     });
-  }, [searchTerm]);
+  }, [searchTerm, sortedCertificates]);
 
   const visibleCertificates = useMemo(() => {
     return filteredCertificates.slice(0, visibleCount);
@@ -67,6 +76,7 @@ const CertificatesGrid = ({ searchTerm }: CertificatesGridProps) => {
             </span>
           )}
         </p>
+        <p className="text-white/50 text-sm mt-1">Sorted alphabetically by name</p>
       </div>
 
       {/* Certificates Grid */}
