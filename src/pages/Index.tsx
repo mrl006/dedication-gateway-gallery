@@ -1,12 +1,11 @@
-
 import { memo, lazy, Suspense } from "react";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Lazy load heavy components
-const CertificatesGallery = lazy(() => import("@/components/CertificatesGallery"));
-const FounderMessage = lazy(() => import("@/components/FounderMessage"));
+// Lazy load heavy components with proper named export handling
+const CertificatesGallery = lazy(() => import("@/components/CertificatesGallery").then(module => ({ default: module.CertificatesGallery })));
+const FounderMessage = lazy(() => import("@/components/FounderMessage").then(module => ({ default: module.FounderMessage })));
 
 // Loading component for lazy loaded sections
 const SectionSkeleton = () => (
