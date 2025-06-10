@@ -1,6 +1,8 @@
+
 import { Card, CardContent } from "@/components/ui/card";
 import { Quote, Linkedin } from "lucide-react";
 import { X } from "lucide-react";
+
 export const FounderMessage = () => {
   return <section className="py-20 px-4">
       <div className="max-w-4xl mx-auto">
@@ -26,9 +28,9 @@ export const FounderMessage = () => {
                 <span>LinkedIn</span>
               </a>
               
-              <a href="#" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors text-white hover:text-purple-300">
+              <a href="https://twitter.com/selcuktopal" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 border border-white/20 rounded-lg transition-colors text-white hover:text-purple-300">
                 <X className="w-5 h-5" />
-                
+                <span>Twitter</span>
               </a>
             </div>
           </CardContent>

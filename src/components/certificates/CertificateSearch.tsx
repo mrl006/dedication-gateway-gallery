@@ -1,6 +1,7 @@
 
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { sanitizeSearchTerm } from "@/utils/security";
 
 interface CertificateSearchProps {
   searchTerm: string;
@@ -8,6 +9,11 @@ interface CertificateSearchProps {
 }
 
 const CertificateSearch = ({ searchTerm, onSearchChange }: CertificateSearchProps) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const sanitizedValue = sanitizeSearchTerm(e.target.value);
+    onSearchChange(sanitizedValue);
+  };
+
   return (
     <div className="mb-8 max-w-md mx-auto">
       <div className="relative">
@@ -16,7 +22,8 @@ const CertificateSearch = ({ searchTerm, onSearchChange }: CertificateSearchProp
           type="text"
           placeholder="Search certificates by name or title..."
           value={searchTerm}
-          onChange={(e) => onSearchChange(e.target.value)}
+          onChange={handleInputChange}
+          maxLength={100}
           className="pl-10 bg-white/10 backdrop-blur-md border-white/20 text-white placeholder:text-white/60 focus:border-purple-400/50"
         />
       </div>

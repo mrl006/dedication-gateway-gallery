@@ -15,17 +15,30 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
   const [imageError, setImageError] = useState(false);
 
   const handleDownload = useCallback(() => {
-    window.open(certificate.ipfsUrl, '_blank');
+    // Validate URL before opening
+    if (certificate.ipfsUrl && certificate.ipfsUrl.startsWith('http')) {
+      window.open(certificate.ipfsUrl, '_blank', 'noopener,noreferrer');
+    }
   }, [certificate.ipfsUrl]);
 
-  // Prevent context menu (right-click)
+  // Enhanced context menu prevention
   const handleContextMenu = useCallback((e: React.MouseEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+    return false;
   }, []);
 
-  // Prevent drag and drop
+  // Enhanced drag prevention
   const handleDragStart = useCallback((e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
+    return false;
+  }, []);
+
+  // Prevent selection
+  const handleSelectStart = useCallback((e: React.SyntheticEvent) => {
+    e.preventDefault();
+    return false;
   }, []);
 
   const handleImageLoad = useCallback(() => {
@@ -45,11 +58,19 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
             <div className="absolute inset-0 bg-gradient-to-r from-gray-200/20 via-gray-300/20 to-gray-200/20 animate-pulse" />
           )}
           
-          {/* Protected image with overlay */}
+          {/* Enhanced protected image container */}
           <div 
             className="relative w-full h-full select-none"
             onContextMenu={handleContextMenu}
-            style={{ userSelect: 'none' }}
+            onDragStart={handleDragStart}
+            onSelectStart={handleSelectStart}
+            style={{ 
+              userSelect: 'none',
+              WebkitUserSelect: 'none',
+              MozUserSelect: 'none',
+              msUserSelect: 'none',
+              WebkitTouchCallout: 'none'
+            }}
           >
             {!imageError ? (
               <img 
@@ -63,6 +84,8 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
                 loading={priority ? "eager" : "lazy"}
                 draggable={false}
                 onDragStart={handleDragStart}
+                onContextMenu={handleContextMenu}
+                onSelectStart={handleSelectStart}
                 onLoad={handleImageLoad}
                 onError={handleImageError}
                 style={{
@@ -71,9 +94,9 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
                   userSelect: 'none',
                   WebkitUserSelect: 'none',
                   MozUserSelect: 'none',
-                  msUserSelect: 'none'
+                  msUserSelect: 'none',
+                  WebkitTouchCallout: 'none'
                 }}
-                // Add responsive image sizes for better performance
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               />
             ) : (
@@ -82,12 +105,18 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
               </div>
             )}
             
-            {/* Protection overlay */}
+            {/* Enhanced protection overlay with watermark */}
             <div 
               className="absolute inset-0 bg-transparent pointer-events-auto"
               onContextMenu={handleContextMenu}
               onDragStart={handleDragStart}
+              onSelectStart={handleSelectStart}
             />
+            
+            {/* Subtle watermark */}
+            <div className="absolute bottom-1 left-1 text-xs text-white/20 pointer-events-none select-none font-mono">
+              W3DS
+            </div>
             
             {/* Certificate icon overlay */}
             <div className="absolute top-1 right-1 md:top-2 md:right-2 bg-black/50 backdrop-blur-sm rounded-full p-1">
@@ -113,7 +142,8 @@ const CertificateCard = memo(({ certificate, priority = false }: CertificateCard
           
           <Button
             onClick={handleDownload}
-            className="w-full mt-3 md:mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 transition-all duration-300 text-xs md:text-sm py-2 md:py-3"
+            disabled={!certificate.ipfsUrl}
+            className="w-full mt-3 md:mt-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 transition-all duration-300 text-xs md:text-sm py-2 md:py-3 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
             Download Certificate
