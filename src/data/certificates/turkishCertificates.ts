@@ -175,6 +175,6 @@ export const turkishCertificates: Certificate[] = [
     title: "Web3 Decision Science Contribution",
     date: "2025-06-09",
     image: "/lovable-uploads/a0a0862a-c8e9-4a30-87d9-eb808b21e4f1.png",
-    ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeiammq5plpenfwyrq2tmw4323wt6wkayutf5ns4ygeabr6mibvqwzy"
+    ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeievstjknwytixurpvpmvbdvdwt37favovk7h2zlx3gipgxftc7lji"
   }
 ];
