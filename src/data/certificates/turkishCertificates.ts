@@ -169,5 +169,13 @@ export const turkishCertificates: Certificate[] = [
     date: "2025-06-09",
     image: "/lovable-uploads/e9038980-ab10-4735-95cc-792f48aad9a0.png",
     ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeif4p3ru5zq4abmk6ysggleoll2t2ce7oeezdmjveiidyejlr2pjsy/2025/TR/Yusuf%20%C3%96ZG%C3%9CL.jpg"
+  },
+  {
+    id: 25,
+    name: "Emrah ÇELİK",
+    title: "Web3 Decision Science Contribution",
+    date: "2025-06-09",
+    image: "/lovable-uploads/1189848e-085a-420a-8013-63e6d834df74.png",
+    ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeiammq5plpenfwyrq2tmw4323wt6wkayutf5ns4ygeabr6mibvqwzy"
   }
 ];
