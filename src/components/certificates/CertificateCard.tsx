@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
-import { Certificate } from "@/data/certificatesData";
+import { Certificate } from "@/types/certificate";
 
 interface CertificateCardProps {
   certificate: Certificate;
@@ -24,8 +24,7 @@ const CertificateCard = ({ certificate }: CertificateCardProps) => {
             loading="lazy"
             style={{
               maxWidth: '100%',
-              height: 'auto',
-              imageRendering: 'optimizeQuality'
+              height: 'auto'
             }}
             onLoad={(e) => {
               const img = e.target as HTMLImageElement;
