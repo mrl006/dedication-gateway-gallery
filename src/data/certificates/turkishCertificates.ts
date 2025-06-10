@@ -1,4 +1,3 @@
-
 import { Certificate } from "@/types/certificate";
 
 export const turkishCertificates: Certificate[] = [
@@ -175,7 +174,7 @@ export const turkishCertificates: Certificate[] = [
     name: "Emrah ÇELİK",
     title: "Web3 Decision Science Contribution",
     date: "2025-06-09",
-    image: "/lovable-uploads/1189848e-085a-420a-8013-63e6d834df74.png",
+    image: "/lovable-uploads/a0a0862a-c8e9-4a30-87d9-eb808b21e4f1.png",
     ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeiammq5plpenfwyrq2tmw4323wt6wkayutf5ns4ygeabr6mibvqwzy"
   }
 ];
