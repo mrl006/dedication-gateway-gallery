@@ -1,3 +1,4 @@
+
 import { Certificate } from "@/types/certificate";
 
 export const turkishCertificates: Certificate[] = [
@@ -144,14 +145,6 @@ export const turkishCertificates: Certificate[] = [
     date: "2025-06-09",
     image: "/lovable-uploads/998b3ab8-9622-48bc-b3be-893f34697cd2.png",
     ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeif4p3ru5zq4abmk6ysggleoll2t2ce7oeezdmjveiidyejlr2pjsy/2025/TR/Zeliha%20ATA%C5%9E.jpg"
-  },
-  {
-    id: 22,
-    name: "Sibel YAŞAR",
-    title: "Web3 Decision Science Contribution",
-    date: "2025-06-09",
-    image: "/lovable-uploads/6081837c-9d65-420b-b857-4ec6c98c68d5.png",
-    ipfsUrl: "https://amethyst-electronic-moth-441.mypinata.cloud/ipfs/bafybeif4p3ru5zq4abmk6ysggleoll2t2ce7oeezdmjveiidyejlr2pjsy/2025/TR/Sibel%20YA%C5%9EAR.jpg"
   },
   {
     id: 23,
