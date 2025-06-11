@@ -25,9 +25,9 @@ export const Hero = memo(() => {
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-pink-500/20 mix-blend-overlay" />
             </div>
             
-            {/* Rotating ring around logo - responsive and optimized with continuous rotation */}
+            {/* Rotating ring around logo - responsive and optimized */}
             <div 
-              className="absolute inset-0 w-20 h-20 md:w-32 md:h-32 border border-dashed md:border-2 border-black/40 md:border-black/60 rounded-full backdrop-blur-md bg-black/10 md:bg-black/20 z-0 animate-spin" 
+              className="absolute inset-0 w-20 h-20 md:w-32 md:h-32 border border-dashed md:border-2 border-black/40 md:border-black/60 rounded-full animate-spin backdrop-blur-md bg-black/10 md:bg-black/20 z-0" 
               style={{ animationDuration: '10s' }}
             />
           </div>
